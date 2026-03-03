@@ -3,7 +3,7 @@ valortotal = float(input("Digite o valor total da compra: "))
 distancia = int(input("Digite a distância em km: "))
 cupom = input("Você deseja cumpom? S ou N: " )
 frete = 40.00
-TOTAL = 0.00
+total = 0.00
 
 if valortotal >= 1000.00 and cupom == "S":
     desconto = 0.20 * valortotal
@@ -14,10 +14,11 @@ elif valortotal > 500.00 and valortotal < 1000.00 and cupom == "S":
     total = valortotal - desconto
 
 
-if distancia <= 50 and total >= 200.00:
+if distancia <= 50 and total > 200.00:
     frete = 0.00 
     valorfinal = total + frete 
 else: 
+    desconto = 0.00
     valorfinal = total + frete
 
     print("Nome do cliente:", cliente)
