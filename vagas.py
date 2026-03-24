@@ -1,6 +1,7 @@
- vagas = ["Ocupado", "Livre", "Ocupado", "Livre"]
- input("Digite o número de uma vaga (0 a 3)")
- if % 2 == 0 and vagas == "Livre":
-    print(f"Vaga {vagas} autorizada para estacionar.")
+vagas = ["Livre", "Ocupado", "Livre", "Ocupado"]
+indice = int(input("Digite o número de uma vaga (0 a 3)"))
+
+if indice % 2 == 0 and "Livre":
+    print(f"Vaga {indice} autorizada para estacionar.")
 else:
-    print (f"Vaga {vagas} indisponível ou fora das regras.")
+    print (f"Vaga {indice} indisponível ou fora das regras.")
