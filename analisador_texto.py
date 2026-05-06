@@ -1,8 +1,8 @@
 def contar_caracteres(palavra):
-    return len(palavra)
-
-nome_de_usuario = input("Digite o nome de usuário: ")
-while contar_caracteres < 5:
-    print("Nome de usuário muito curto")
-else:
+    while len(palavra) <5:
+        print("Nome de usuário muito curto")
+        palavra = input("Digite o seu nome de usuário novamente: ")
     print( "Nome aceito")
+    
+nome_de_usuario = input("Digite o nome de usuário: ")
+contar_caracteres(nome_de_usuario)
