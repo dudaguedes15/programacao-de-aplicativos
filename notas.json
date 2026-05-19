@@ -1,0 +1,1 @@
+{"matematica": 8.5, "portugues": 9.0, "soma": 17.5}{"matematica": 7.8, "portugues": 5.3, "soma": 13.1}{"nome": "duda", "matematica": 7.8, "portugues": 5.3, "soma": 13.1}
