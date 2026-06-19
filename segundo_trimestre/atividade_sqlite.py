@@ -23,6 +23,7 @@ def cadastrar_professores():
     salario = float(input("Digite o salário dele: "))
     nome_escola = input("Digite o nome da escola: ")
 
+
     comando_inserir = f'''
         INSERT INTO  professores (nome, telefone, materia, idade, cpf, salario, escola)
         values ('{nome_completo}', '{telefone_professor}', '{materia}', '{idade_prof}', '{cpf_prof}', '{salario}', '{nome_escola}')
