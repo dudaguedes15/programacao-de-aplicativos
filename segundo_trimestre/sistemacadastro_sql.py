@@ -1,46 +1,48 @@
 import sqlite3
 def cadastrar():
-    conexao = sqlite3.connect('escola_demonstracao.db')
-    cursor = conexao.cursor()
+    try:
+        conexao = sqlite3.connect('escola_demonstracao.db')
+        cursor = conexao.cursor()
 
-    cursor.execute('''
-                    CREATE TABLE IF NOT EXISTS alunos (
-                id  INTEGER PRIMARY KEY AUTOINCREMENT,
-                nome TEXT NOT NULL,
-                telefone TEXT,
-                turma TEXT,
-                idade INTERGER,
-                cpf TEXT UNIQUE NOT NULL,
-                endereco TEXT,
-                cidade TEXT,
-                estado TEXT,
-                id_professor INTEGER,
-                FOREIGN KEY (id_professor) REFERENCES professor(id)
-                )
-                ''')
+        cursor.execute('''
+                        CREATE TABLE IF NOT EXISTS alunos (
+                    id  INTEGER PRIMARY KEY AUTOINCREMENT,
+                    nome TEXT NOT NULL,
+                    telefone TEXT,
+                    turma TEXT,
+                    idade INTERGER,
+                    cpf TEXT UNIQUE NOT NULL,
+                    endereco TEXT,
+                    cidade TEXT,
+                    estado TEXT,
+                    id_professor INTEGER,
+                    FOREIGN KEY (id_professor) REFERENCES professor(id)
+                    )
+                    ''')
 
-    nome_aluno = input (" Digite o nome do aluno: ")
-    telefone_aluno = input (" Digite o telefone do alunos: ")
-    turma_aluno = input (" Digite qual a sua turma: ")
-    idade_aluno = int(input(" Digite a sua idade: "))
-    cpf_aluno = input(" Digite seu CPF: ")
-    endereco = input("Digite o seu endereço: ")
-    cidade = input("Digite a cidade:")
-    estado = input("Digite o estado: ")
-    id_professor = int(input("Digite o ID do professor: "))
+        nome_aluno = input (" Digite o nome do aluno: ")
+        telefone_aluno = input (" Digite o telefone do alunos: ")
+        turma_aluno = input (" Digite qual a sua turma: ")
+        idade_aluno = int(input(" Digite a sua idade: "))
+        cpf_aluno = input(" Digite seu CPF: ")
+        endereco = input("Digite o seu endereço: ")
+        cidade = input("Digite a cidade:")
+        estado = input("Digite o estado: ")
+        id_professor = int(input("Digite o ID do professor: "))
 
-    comando_inserir = f'''
-        INSERT INTO  alunos (nome, telefone, turma, idade, cpf, id_professor)
-        values ('{nome_aluno}', '{telefone_aluno}', '{turma_aluno}', '{idade_aluno}', '{cpf_aluno}', '{endereco}', '{cidade}', '{estado}', '{id_professor}')
-        '''
+        comando_inserir = f'''
+            INSERT INTO  alunos (nome, telefone, turma, idade, cpf, endereco, cidade, estado, id_professor)
+            values ('{nome_aluno}', '{telefone_aluno}', '{turma_aluno}', '{idade_aluno}', '{cpf_aluno}', '{endereco}', '{cidade}', '{estado}', '{id_professor}')
+            '''
 
-    cursor.execute(comando_inserir)
+        cursor.execute(comando_inserir)
 
-    conexao.commit()
+        conexao.commit()
 
-    print("cadastro realizado")
-
-    conexao.close()
+        print("cadastro realizado")
+    except: 
+        print("Digite apenas números. ")
+        conexao.close()
 
 def listar():
     
@@ -106,7 +108,7 @@ def alterar():
 
         cursor.execute(f'''
                     UPDATE alunos
-                        SET nome ='{nome_atualizado}', Telefone ='{telefone_atualizado}' ,Turma ='{turma_atualizada}', Idade ='{idade_atualizada}', endereco = '{endereco_atualizado}', cidade = '{cidade_atualizado}', estado = '{estado_atualizado}' CPF ='{cpf_atualizado}',    id_professor = '{professor_id_atualizado}'
+                        SET nome ='{nome_atualizado}', Telefone ='{telefone_atualizado}' ,Turma ='{turma_atualizada}', Idade ='{idade_atualizada}', endereco = '{endereco_atualizado}', cidade = '{cidade_atualizado}', estado = '{estado_atualizado}', CPF ='{cpf_atualizado}',    id_professor = '{professor_id_atualizado}'
                     WHERE id ={id_aluno}
                         ''')
         conexao.commit()
@@ -116,14 +118,12 @@ def alterar():
 
 
 def deletar():
-
-
     conexao = sqlite3.connect("escola_demonstracao.db")
     cursor = conexao.cursor()
     listar()
     id_aluno = int(input(" Qual ID deseja deletar: " ))
 
     cursor.execute(f'''DELETE FROM Alunos WHERE Id = {id_aluno}''')
-    conexao.commit
-    conexao.close
-listar()
+    conexao.commit()
+    conexao.close()
+cadastrar()

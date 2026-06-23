@@ -1,40 +1,49 @@
 import sqlite3
 def cadastrar_professores():
-    conexao = sqlite3.connect('escola_demonstracao.db')
-    cursor =  cursor = conexao.cursor()
-    cursor.execute('''
-                        CREATE TABLE IF NOT EXISTS professores (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    nome TEXT NOT NULL,
-                    telefone TEXT,
-                    materia TEXT,
-                    idade INTERGER,
-                    cpf TEXT UNIQUE NOT NULL,
-                    salario REAL,
-                    escola TEXT
-                )
-                ''')
+    try:
+        conexao = sqlite3.connect('escola_demonstracao.db')
+        cursor =  cursor = conexao.cursor()
+        cursor.execute('''
+                            CREATE TABLE IF NOT EXISTS professores (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        nome TEXT NOT NULL,
+                        telefone TEXT,
+                        materia TEXT,
+                        idade INTERGER,
+                        cpf TEXT UNIQUE NOT NULL,
+                        salario REAL,
+                        escola TEXT,
+                        endereco TEXT
+                    )
+                    ''')
 
-    nome_completo = input("Digite o nome do professor: ")
-    telefone_professor = input("Digite o telefone do professor: ")
-    materia = input("Digite a materia que esse professor da aula: ")
-    idade_prof = int(input("Digite a idade: "))
-    cpf_prof = input("Digite seu CPF: ")
-    salario = float(input("Digite o salário dele: "))
-    nome_escola = input("Digite o nome da escola: ")
+        nome_completo = input("Digite o nome do professor: ")
+        telefone_professor = input("Digite o telefone do professor: ")
+        materia = input("Digite a materia que esse professor da aula: ")
+        idade_prof = int(input("Digite a idade: "))
+        cpf_prof = input("Digite seu CPF: ")
+        salario = float(input("Digite o salário dele: "))
+        nome_escola = input("Digite o nome da escola: ")
+        endereco_prof = input("Digite seu endereço: ")
+        
+
+        comando_inserir = f'''
+            INSERT INTO  professores (nome, telefone, materia, idade, cpf, salario, escola, endereco)
+            values ('{nome_completo}', '{telefone_professor}', '{materia}', '{idade_prof}', '{cpf_prof}', '{salario}', '{nome_escola}', '{endereco_prof}')
+            '''
+        cursor.execute(comando_inserir)
+
+        conexao.commit()
+
+        print("cadastro realizado")
+    except idade_prof:
+        print("Digite apenas números.")
+
+    except salario:
+        print("Digite apenas números quebrados.")
 
 
-    comando_inserir = f'''
-        INSERT INTO  professores (nome, telefone, materia, idade, cpf, salario, escola)
-        values ('{nome_completo}', '{telefone_professor}', '{materia}', '{idade_prof}', '{cpf_prof}', '{salario}', '{nome_escola}')
-        '''
-    cursor.execute(comando_inserir)
-
-    conexao.commit()
-
-    print("cadastro realizado")
-
-    conexao.close()
+        conexao.close()
 
 def listar():
     conexao = sqlite3.connect('escola_demonstracao.db')
@@ -54,6 +63,7 @@ def listar():
         print(f"CPF do professor: {professor[5]}")
         print(f"Salário: {professor[6]}")
         print(f"Nome da escola: {professor[7]}")
+        print(f"Seu endereco: {professor[8]}")
 
 def alterar():
     conexao = sqlite3.connect('escola_demonstracao.db')
@@ -63,6 +73,7 @@ def alterar():
     id_professor = int(input("Digite o ID do professor que você deseja alterar: ")) 
     cursor.execute(f'''SELECT * FROM professores WHERE id = {id_professor}''')
     professor = cursor.fetchone()
+
 
     if not professor:
         print("Professor não cadastrado.")
@@ -74,6 +85,7 @@ def alterar():
         print(f"CPF atual: {professor[4]}")
         print(f"Salário: {professor[5]}")
         print(f"Escola atual: {professor[6]}")
+        print(f"Endereço atual: {professor[7]}")
 
         nome_atualizado = input("Atualize o nome do professor: ")
         telefone_atualizado = input("Atualize seu telefone: ")
@@ -82,6 +94,7 @@ def alterar():
         cpf_atualizado = int(input("Atualize o cpf: "))
         salario_atualizado = float(input("Digite o salário atualizado: "))
         escola_atualizada = input("Atualize o nome da escola: ")
+        endereco_atualizado = input("Atualize seu endereço: ")
 
         cursor.execute(f'''
                        UPDATE professores
@@ -92,6 +105,7 @@ def alterar():
                        CPF = '{cpf_atualizado}',
                        salario = '{salario_atualizado}',
                        escola = '{escola_atualizada}'
+                       endereco = '{endereco_atualizado}'
                        WHERE id ={id_professor}
                     ''')
         conexao.commit()
