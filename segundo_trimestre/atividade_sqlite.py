@@ -36,13 +36,16 @@ def cadastrar_professores():
         conexao.commit()
 
         print("cadastro realizado")
-    except idade_prof:
-        print("Digite apenas números.")
 
-    except salario:
-        print("Digite apenas números quebrados.")
-
-
+    except ValueError:
+        print("Erro de valor no cadastro tente novamente")
+    except TypeError:
+        print("Erro de tipo de dados")
+    except NameError:
+        print("Erro de valor no cadastro tente novamente")
+    except IndexError:
+        print("Erro de indice fora dos limites")
+    
         conexao.close()
 
 def listar():
