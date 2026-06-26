@@ -40,90 +40,131 @@ def cadastrar():
         conexao.commit()
 
         print("cadastro realizado")
-    except: 
-        print("Digite apenas números. ")
+    except ValueError:
+        print("Digite um valor válido.")
+    except TypeError:
+        print("Tipo de dado errado.")
+    except NameError:
+        print("Erro de valor no cadastro tente novamente")
+    except IndexError:
+        print("Erro de indice fora dos limites")
+    except KeyError:
+        print("Chave não encontrada")
+    except AttributeError:
+        print("Atributo não existe")
+    except sqlite3.IntegrityError:
+        print("CPF já cadastrado.")
+    except Exception as e:
+        print(f"Ocorreu um erro: {e}.")
+    finally:
         conexao.close()
 
 def listar():
-    
-    conexao = sqlite3.connect('escola_demonstracao.db')
-    cursor = conexao.cursor()
+    try:
+        conexao = sqlite3.connect('escola_demonstracao.db')
+        cursor = conexao.cursor()
 
-    cursor.execute("SELECT * FROM alunos") 
-    alunos = cursor.fetchall() 
+        cursor.execute("SELECT * FROM alunos") 
+        alunos = cursor.fetchall() 
 
-    print("=== Lista de Aluno ===")
+        print("=== Lista de Aluno ===")
 
-    for aluno in alunos: 
-        print(f"ID: {aluno[0]}")
-        print(f"Nome: {aluno[1]}")
-        print(f"Telefone: {aluno[2]}")
-        print(f"Turma: {aluno[3]}")
-        print(f"Idade: {aluno[4]}")
-        print(f"CPF: {aluno[5]}")
-        print(f"endereco: {aluno[6]}")
-        print(f"cidade: {aluno[7]}")
-        print(f"estado: {aluno[8]}")
-        print(f"ID do professor: {aluno[9]}")
-        print("-" * 30)
-
-def alterar():
-
-    conexao = sqlite3.connect('escola_demonstracao.db')
-    cursor = conexao.cursor()
-
-    id_aluno = int(input(" Qual seu ID: "))
-
-    cursor.execute(f'''SELECT * FROM alunos WHERE id = {id_aluno}''')
-    
-    aluno = cursor.fetchone()
-
-    if not aluno:
-        print(" Não encontrado ")
-    else:
-        print(f"Nome atual {aluno[1]} ")
-        print(f"Telefone atual {aluno[2]} ")
-        print(f"Turma atual {aluno[3]} ")
-        print(f"Idade atual {aluno[4]} ")
-        print(f"CPF atual {aluno[5]} ")
-        print(f"endereço atual {aluno[6]}")
-        print(f"cidade atual {aluno[7]}")
-        print(f"estado atual {aluno[8]}")
-        print(f"Professor atual: {aluno[9]}")
-        
-        
-
-        nome_atualizado = input(" Atualize seu nome: ")
-        telefone_atualizado = input(" Atualize se telefone: ")
-        turma_atualizada = input(" Atualize sua turma: ")
-        idade_atualizada = input(" Atualize sua idade: ")
-        cpf_atualizado = input(" Atualize seu CPF: ")
-        endereco_atualizado = input(" Atualize o endereço: ")
-        cidade_atualizado = input(" Atualize a cidade: ")
-        estado_atualizado = input(" Atualize o estado: ")
-        professor_id_atualizado = input("Atualize o ID do professor: ")
-        
-        
-        
-
-        cursor.execute(f'''
-                    UPDATE alunos
-                        SET nome ='{nome_atualizado}', Telefone ='{telefone_atualizado}' ,Turma ='{turma_atualizada}', Idade ='{idade_atualizada}', endereco = '{endereco_atualizado}', cidade = '{cidade_atualizado}', estado = '{estado_atualizado}', CPF ='{cpf_atualizado}',    id_professor = '{professor_id_atualizado}'
-                    WHERE id ={id_aluno}
-                        ''')
-        conexao.commit()
-        print(" Dados alterados ")
-
+        for aluno in alunos: 
+            print(f"ID: {aluno[0]}")
+            print(f"Nome: {aluno[1]}")
+            print(f"Telefone: {aluno[2]}")
+            print(f"Turma: {aluno[3]}")
+            print(f"Idade: {aluno[4]}")
+            print(f"CPF: {aluno[5]}")
+            print(f"endereco: {aluno[6]}")
+            print(f"cidade: {aluno[7]}")
+            print(f"estado: {aluno[8]}")
+            print(f"ID do professor: {aluno[9]}")
+            print("-" * 30)
+    except IndexError:
+        print("Erro de indice fora dos limites")
+    except sqlite3.IntegrityError:
+        print("CPF já cadastrado.")
+    except Exception as e:
+        print(f"Ocorreu um erro: {e}.")
+    finally:
         conexao.close()
 
+def alterar():
+    try:
+        conexao = sqlite3.connect('escola_demonstracao.db')
+        cursor = conexao.cursor()
+
+        id_aluno = int(input(" Qual seu ID: "))
+
+        cursor.execute(f'''SELECT * FROM alunos WHERE id = {id_aluno}''')
+        
+        aluno = cursor.fetchone()
+
+        if not aluno:
+            print(" Não encontrado ")
+        else:
+            print(f"Nome atual {aluno[1]} ")
+            print(f"Telefone atual {aluno[2]} ")
+            print(f"Turma atual {aluno[3]} ")
+            print(f"Idade atual {aluno[4]} ")
+            print(f"CPF atual {aluno[5]} ")
+            print(f"endereço atual {aluno[6]}")
+            print(f"cidade atual {aluno[7]}")
+            print(f"estado atual {aluno[8]}")
+            print(f"Professor atual: {aluno[9]}")
+            
+            
+
+            nome_atualizado = input(" Atualize seu nome: ")
+            telefone_atualizado = input(" Atualize se telefone: ")
+            turma_atualizada = input(" Atualize sua turma: ")
+            idade_atualizada = input(" Atualize sua idade: ")
+            cpf_atualizado = input(" Atualize seu CPF: ")
+            endereco_atualizado = input(" Atualize o endereço: ")
+            cidade_atualizado = input(" Atualize a cidade: ")
+            estado_atualizado = input(" Atualize o estado: ")
+            professor_id_atualizado = input("Atualize o ID do professor: ")
+            
+            
+            
+
+            cursor.execute(f'''
+                        UPDATE alunos
+                            SET nome ='{nome_atualizado}', Telefone ='{telefone_atualizado}' ,Turma ='{turma_atualizada}', Idade ='{idade_atualizada}', endereco = '{endereco_atualizado}', cidade = '{cidade_atualizado}', estado = '{estado_atualizado}', CPF ='{cpf_atualizado}',    id_professor = '{professor_id_atualizado}'
+                        WHERE id ={id_aluno}
+                            ''')
+            conexao.commit()
+            print(" Dados alterados ")
+    except ValueError:
+        print("Erro de valor no cadastro tente novamente")
+    except TypeError:
+        print("Erro de tipo de dados")
+    except sqlite3.IntegrityError:
+        print("CPF já cadastrado.")
+    except Exception as e:
+        print(f"Ocorreu um erro: {e}.")
+    finally:
+        conexao.close() 
+           
 
 def deletar():
-    conexao = sqlite3.connect("escola_demonstracao.db")
-    cursor = conexao.cursor()
-    listar()
-    id_aluno = int(input(" Qual ID deseja deletar: " ))
+    try:
+        conexao = sqlite3.connect("escola_demonstracao.db")
+        cursor = conexao.cursor()
+        listar()
+        id_aluno = int(input(" Qual ID deseja deletar: " ))
 
-    cursor.execute(f'''DELETE FROM Alunos WHERE Id = {id_aluno}''')
-    conexao.commit()
-    conexao.close()
+        cursor.execute(f'''DELETE FROM Alunos WHERE Id = {id_aluno}''')
+        conexao.commit()
+    except ValueError:
+        print("Erro de valor no cadastro tente novamente")
+    except TypeError:
+        print("Erro de tipo de dados")
+    except sqlite3.IntegrityError:
+        print("CPF já cadastrado.")
+    except Exception as e:
+        print(f"Ocorreu um erro: {e}.")
+    finally:
+        conexao.close()
 cadastrar()
