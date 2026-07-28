@@ -11,6 +11,20 @@ def inicializar_banco():
             )
         ''')
 
-    conexao.commit() # o banco de dados nao foi criado
+    nome_completo = input("Digite o seu nome: ")
+
+    
+    comando_inserir = f'''
+    INSERT INTO escolas (nome)
+    VALUES ('{nome_completo}')
+    '''
+    cursor.execute(comando_inserir)
+
+
+    conexao.commit()
+    print("cadastro realizado")
     conexao.close() 
+
+inicializar_banco()
+
 
