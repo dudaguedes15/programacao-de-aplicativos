@@ -4,8 +4,10 @@ def cadastrar_serie(nome_serie, id_escola):
     conexao = sqlite3.connect('sistema_escola.db')
     cursor = conexao.cursor()
     cursor.execute('''
-                CREATE TABLE IF NOT EXISTS serie
-    
+                            CREATE TABLE IF NOT EXISTS serie (
+                        id_escola INTEGER PRIMARY KEY AUTOINCREMENT,
+                        nome_serie TEXT NOT NULL
+        )
     ''')
 
     try:
@@ -24,4 +26,5 @@ def cadastrar_serie(nome_serie, id_escola):
 
 nome_serie = input("Nome da série: ")
 id_escola = int(input("ID da escola: "))
+
 cadastrar_serie(nome_serie, id_escola)
