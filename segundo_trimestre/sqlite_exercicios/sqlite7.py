@@ -21,7 +21,6 @@ def cadastrar_turma(nome_turma, id_serie, id_prof):
         cursor.execute(
     f"INSERT INTO turmas (nome_turma, id_serie, id_professor) VALUES ('{nome_turma}', {id_serie}, {id_prof})"
 )
-
         conexao.commit()
         print("Turma cadastrada com sucesso!")
 
