@@ -13,4 +13,4 @@ id_aluno = int(input("Digite o id do aluno: "))
 novo_nome = input("Ddigite o novo nome do aluno: ")
 atualizar_nome_aluno(id_aluno, novo_nome)
 
-# Faltou usar o WHERE no UPDATE, então o sistema mudou o nome de todos os alunos e não só do aluno com o ID informado.
+#Faltou usar o WHERE no UPDATE, então o sistema mudou o nome de todos os alunos e não só do aluno com o ID informado.

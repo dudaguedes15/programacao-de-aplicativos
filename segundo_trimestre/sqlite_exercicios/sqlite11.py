@@ -15,4 +15,4 @@ def listar_alunos_e_turma():
         print(f"Aluno: {linha[0]} | Turma: {linha[1]}")
         conexao.close()
 
-# Faltava a condição ON para ligar alunos e turmas de forma correta. 
+#Faltava a condição ON para ligar alunos e turmas de forma correta. 

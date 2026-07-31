@@ -28,3 +28,4 @@ def inicializar_banco():
 inicializar_banco()
 
 
+#não tinha conexcao.commit, ai os dados nao salva sem isso 

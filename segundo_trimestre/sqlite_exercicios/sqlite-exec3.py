@@ -27,3 +27,5 @@ def criar_tabelas():
     conexao.close()
 
 criar_tabelas()
+
+#as tabelas foram feitas em ordem errada 

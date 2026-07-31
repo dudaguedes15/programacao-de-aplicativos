@@ -36,3 +36,6 @@ id_serie = int(input("ID da série: "))
 id_prof = int(input("ID do professor: "))
 
 cadastrar_turma(nome_turma, id_serie, id_prof)
+
+
+#tava sem o try, sem except e finally

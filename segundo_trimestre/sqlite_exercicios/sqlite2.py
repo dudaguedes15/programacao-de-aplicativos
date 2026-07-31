@@ -28,3 +28,6 @@ nome_serie = input("Nome da série: ")
 id_escola = int(input("ID da escola: "))
 
 cadastrar_serie(nome_serie, id_escola)
+
+
+#tinha que colocar o pragma, ele deixa ativar a chave estrangeira ai ele reconhece se a estrangeira existe

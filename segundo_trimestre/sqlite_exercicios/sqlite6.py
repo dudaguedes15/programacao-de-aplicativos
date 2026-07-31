@@ -4,8 +4,7 @@ def buscar_professor(id_prof):
     conexao = sqlite3.connect('sistema_escola.db')
     cursor = conexao.cursor()
 
-    cursor.execute(f"SELECT nome FROM professores WHERE id = {id_prof}")
-
+    cursor.execute("SELECT nome FROM professores WHERE id = ?", (id_prof,))
     resultado = cursor.fetchone()
 
     if resultado:
@@ -17,3 +16,5 @@ def buscar_professor(id_prof):
 
 id_prof = int(input("Digite o ID do professor: "))
 buscar_professor(id_prof)
+
+#tinha que colocar uma virgula depois do ((id_prof))

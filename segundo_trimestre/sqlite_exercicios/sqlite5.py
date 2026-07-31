@@ -30,3 +30,5 @@ def vincular_aluno_turma():
             conexao.close()
 
 vincular_aluno_turma()
+
+#o input tem que ficar dentro do try junto com o ValueError para que se voce colocar um valor errado o codigo pare antes do except
