@@ -1,12 +1,8 @@
 import sqlite3
-conexao = sqlite3.connect('banco_hospital.db')
-cursor = conexao.cursor()
-cursor.execute
+
 
 def cadastrar():
     try:
-        conexao = sqlite3.connect('banco_hospital.db')
-        cursor = conexao.cursor('''PRAGMA foreign_keys = ON;''')
 
         cursor.execute('''CREATE TABLE IF NOT EXISTS hospitais(
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -40,8 +36,8 @@ def cadastrar():
         conexao.commit()
         print("Médico cadastrado.")
         
-    except sqlite3.IntegrityError:
-        print("CRM já cadastrado.")
+    except sqlite3.IntegrityError as e:
+        print(f"Cadastro já realisado: {e}." )
     except ValueError:
         print("Digite um valor válido.")
     except Exception as e:
