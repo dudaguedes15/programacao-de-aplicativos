@@ -4,7 +4,6 @@ def cadastrar_sociedades():
     try:
         conexao = sqlite3.connect('sistema_escritorio_adv.db')
         cursor = conexao.cursor()
-        comando_inserir_sociedades_advogados = (f'''INSERT INTO sociedades_advogados (nome_banca, registro_oab_juridico) values ('{nome_banca}', '{registro_oab_juridico}')''')
 
         cursor.execute("PRAGMA foreign_keys = ON")
         cursor.execute('''
@@ -15,17 +14,10 @@ def cadastrar_sociedades():
                     ''') 
         nome_banca = input("Digite o nome da banca: ")
         registro_oab_juridico = int(input("Digite seu registro OAB: "))
-        estado_uf = input("Digite o estado da filial: ")
-        id_sociedades = int(input("Digite o id da sociedade de advogados: "))
+        
+        comando_inserir_sociedades_advogados = (f'''INSERT INTO sociedades_advogados (nome_banca, registro_oab_juridico) values ('{nome_banca}', '{registro_oab_juridico}')''')
 
 
-        cursor.execute('''
-                CREATE TABLE IF NOT EXISTS filiais_regionais(
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    estado_uf TEXT,
-                    id_sociedades INTEGER,
-                    FOREIGN KEY (id_sociedades) REFERENCES sociedades_advogados (id))
-                    ''')
 
         print("Cadastro realizado.")
 

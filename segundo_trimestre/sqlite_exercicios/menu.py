@@ -11,7 +11,7 @@ def menu():
 
             if opcao == 1:
                 cadastrar_sociedades()
-            elif == 2:
+            elif opcao == 2:
                 cadastrar_filiais()
             elif opcao == 3:
                 listar_sociedade()
@@ -38,5 +38,12 @@ def menu():
    
     except Exception as e:
         print(f"Ocorreu um erro: {e}.")        
-
+    finally:
+        if opcao != 9:
+            print("Tente novamente.")
+            menu()
+        elif opcao == 9:
+            print("Fechando menu.")
+        else:
+            menu()
 menu()

@@ -19,13 +19,6 @@ def cadastrar_sociedades():
         id_sociedades = int(input("Digite o id da sociedade de advogados: "))
 
 
-        cursor.execute('''
-                CREATE TABLE IF NOT EXISTS filiais_regionais(
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    estado_uf TEXT,
-                    id_sociedades INTEGER,
-                    FOREIGN KEY (id_sociedades) REFERENCES sociedades_advogados (id))
-                    ''')
 
         print("Cadastro realizado.")
 
@@ -261,8 +254,17 @@ def menu():
         print("Erro de valor no cadastro tente novamente")
     except TypeError:
         print("Erro de tipo de dados")
-   
+    
+    finally:
+        if opcao != 9:
+            print("Tente novamente.")
+            menu()
+        elif opcao == 9:
+            print("Fechando menu.")
+        else:
+            menu()
     except Exception as e:
+
         print(f"Ocorreu um erro: {e}.")        
 
 menu()
